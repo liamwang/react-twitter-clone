@@ -1,7 +1,8 @@
+import webpack from 'webpack';
+
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client?http://localhost:8888',
     './client/index.js'
   ],
   module: {
@@ -11,6 +12,10 @@ module.exports = {
       loader: 'react-hot-loader!babel-loader'
     }]
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ],
   resolve: {
     extensions: ['*', '.js']
   },
@@ -18,10 +23,6 @@ module.exports = {
     path: __dirname + '/dist',
     publicPath: '/',
     filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true
   },
   devtool: "cheap-eval-source-map"
 }
