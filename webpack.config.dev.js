@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import path from 'path';
 
 module.exports = {
   entry: [
@@ -8,6 +9,10 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
+      include: [
+        path.join(__dirname, 'client'),
+        path.join(__dirname, 'server/shared')
+      ],
       exclude: /node_modules/,
       loader: 'react-hot-loader!babel-loader'
     }]
