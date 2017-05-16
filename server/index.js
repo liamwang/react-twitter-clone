@@ -8,12 +8,10 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import users from './routes/users';
+import auth from './routes/auth';
 
 const app = express();
-
 app.use(bodyParser.json());
-// Set users route
-app.use('/api/users', users);
 
 // Webpack configuration/hot reloading
 const compiler = webpack(webpackConfig);
@@ -22,7 +20,12 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-// Handle all requests with *
+// Set users route
+app.use('/api/users', users);
+// Set auth route
+app.use('/api/auth', auth);
+
+// Handle all other route requests with *
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 })
