@@ -29,6 +29,17 @@ function validateInput(data, otherValidations) {
   });
 }
 
+router.get('/:identifier', (req, res) => {
+  User.query({
+    // target username and email to avoid querying password_digest
+    select: [ 'username', 'email' ],
+    where: { email: req.params.identifier },
+    orWhere: { username: req.params.identifier }
+  }).fetch().then(user => {
+    res.json({ user });
+  })
+});
+
 router.post('/', (req, res) => {
   validateInput(req.body, commonValidations).then(({ errors, isValid }) => {
     if(isValid) {
@@ -37,10 +48,10 @@ router.post('/', (req, res) => {
 
       User.forge({
         username, email, password_digest
-      }, { hasTimestamps: true}).save()
-      .then(user => res.json({ success: true }))
-      .catch(err => res.status(500).json({ error: err }));
-    }
+        }, { hasTimestamps: true}).save()
+        .then(user => res.json({ success: true }))
+        .catch(err => res.status(500).json({ error: err }));
+      }
 
     else {
       res.status(400).json(errors);
