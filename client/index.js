@@ -7,6 +7,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import routes from './routes';
 import rootReducer from './reducers/rootReducer';
+import setAuthorisationToken from './utils/setAuthorisationToken';
+import jwtDecode from 'jwt-decode';
+import { setCurrentUser } from './actions/authActions';
 
 const store = createStore(
   rootReducer,
@@ -15,6 +18,11 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
+
+if (localStorage.jwtToken) {
+  setAuthorisationToken(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)))
+}
 
 render(
   <Provider store={store}>
