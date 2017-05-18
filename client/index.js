@@ -21,7 +21,7 @@ const store = createStore(
 
 if (localStorage.jwtToken) {
   setAuthorisationToken(localStorage.jwtToken);
-  store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)))
+  store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
 }
 
 render(
