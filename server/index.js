@@ -9,6 +9,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import users from './routes/users';
 import auth from './routes/auth';
+import tweets from './routes/tweets';
 
 const app = express();
 app.use(bodyParser.json());
@@ -24,6 +25,8 @@ app.use(webpackHotMiddleware(compiler));
 app.use('/api/users', users);
 // Set auth route
 app.use('/api/auth', auth);
+// Set tweets route
+app.use('/api/tweets', tweets);
 
 // Handle all other route requests with *
 app.get('/*', (req, res) => {
