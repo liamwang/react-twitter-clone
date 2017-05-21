@@ -2,7 +2,7 @@ import express from 'express';
 import commonValidations from '../shared/validations/signup';
 import bcrypt from 'bcrypt';
 import isEmpty from 'lodash.isEmpty';
-
+// Import User model
 import User from '../models/user';
 
 const router = express.Router();

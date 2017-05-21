@@ -13,6 +13,7 @@ import tweets from './routes/tweets';
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Webpack configuration/hot reloading
 const compiler = webpack(webpackConfig);

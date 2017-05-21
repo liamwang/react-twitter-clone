@@ -3,14 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { createTweet } from '../../actions/tweetActions';
+import validateInput from '../../../server/shared/validations/tweets';
 
 class TweetForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      tweet: '',
       errors: {},
       isLoading: false
+    }
+  }
+
+  isValid = () => {
+    const { errors, isValid } = validateInput(this.state);
+    if(!isValid) {
+      this.setState({ errors });
+    } else {
+      return isValid
     }
   }
 
@@ -20,24 +30,31 @@ class TweetForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createTweet(this.state.title);
+    if(this.isValid()) {
+      this.setState({ errors: {}, isLoading: true });
+      this.props.createTweet(this.state).then(
+        (res) => this.setState({ tweet: '' }),
+        (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+      );
+    }
   }
+  
 
   render() {
-    const { title, errors, isLoading } = this.state;
+    const { tweet, errors, isLoading } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Create New Tweet</h1>
 
         <TextFieldGroup
-          field="title"
-          label="Tweet Title" 
+          field="tweet"
+          label="Tweet Text" 
           onChange={this.handleChange}
-          value={title}
+          value={tweet}
           type="text"
-          name="title"
-          error={errors.title}
+          name="tweet"
+          error={errors.tweet}
         />
 
         <button type="submit" className="btn btn-primary">Add</button>
