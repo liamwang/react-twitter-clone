@@ -81,6 +81,7 @@ class SignupForm extends React.Component {
           value={this.state.username}
           checkUserExists={this.checkUserExists}
           field="username"
+          type="text"
         />
         <TextFieldGroup 
           error={errors.email}
@@ -89,6 +90,7 @@ class SignupForm extends React.Component {
           value={this.state.email}
           checkUserExists={this.checkUserExists}
           field="email"
+          type="email"
         />
         <TextFieldGroup 
           error={errors.password}
@@ -96,6 +98,7 @@ class SignupForm extends React.Component {
           onChange={this.onChange}
           value={this.state.password}
           field="password"
+          type="password"
         />
         <TextFieldGroup 
           error={errors.passwordConfirmation}
@@ -103,6 +106,7 @@ class SignupForm extends React.Component {
           onChange={this.onChange}
           value={this.state.passwordConfirmation}
           field="passwordConfirmation"
+          type="password"
         />
 
         <div className="form-group">
