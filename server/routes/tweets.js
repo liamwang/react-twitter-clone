@@ -6,6 +6,16 @@ import Tweet from '../models/tweet';
 
 const router = express.Router();
 
+// Get tweets from database
+router.get('/', (req, res) => {
+  Tweet.query({
+    select: [ 'tweet_text', 'user_id', 'id', 'created_at' ]
+  }).fetchAll().then(tweets => {
+    res.json({ tweets });
+  })
+});
+
+// Post tweets to database
 router.post('/', authenticate, (req, res) => {
     const tweet_text = req.body.tweet;
     const user_id = req.currentUser.id;

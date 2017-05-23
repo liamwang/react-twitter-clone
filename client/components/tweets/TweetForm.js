@@ -44,21 +44,24 @@ class TweetForm extends React.Component {
     const { tweet, errors, isLoading } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Create New Tweet</h1>
+      <div className="col-md-8 col-md-offset-2">
+        <form onSubmit={this.handleSubmit}>
+          <h3>Create New Tweet</h3>
 
-        <TextFieldGroup
-          field="tweet"
-          label="Tweet Text" 
-          onChange={this.handleChange}
-          value={tweet}
-          type="text"
-          name="tweet"
-          error={errors.tweet}
-        />
+          <TextFieldGroup
+            field="tweet"
+            label="Tweet Text" 
+            onChange={this.handleChange}
+            value={tweet}
+            type="text"
+            name="tweet"
+            error={errors.tweet}
+          />
 
-        <button type="submit" className="btn btn-primary">Add</button>
-      </form>
+          <button type="submit" className="btn btn-primary">Add</button>
+        </form>
+        <hr />
+      </div>
     );
   }
 }
