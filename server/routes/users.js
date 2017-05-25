@@ -45,9 +45,10 @@ router.post('/', (req, res) => {
     if(isValid) {
       const { username, password, email } = req.body;
       const password_digest = bcrypt.hashSync(password, 10);
+      const status = true;
 
       User.forge({
-        username, email, password_digest
+        username, email, password_digest, status
         }, { hasTimestamps: true}).save()
         .then(user => res.json({ success: true }))
         .catch(err => res.status(500).json({ error: err }));

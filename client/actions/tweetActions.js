@@ -10,7 +10,10 @@ export function getTweetsLists(tweets) {
 
 export function createTweet(tweet) {
   return dispatch => {
-    return axios.post('/api/tweets', tweet);
+    return axios.post('/api/tweets', tweet)
+    .then(tweets => {
+      dispatch(getTweets());
+    });
   }
 }
 
