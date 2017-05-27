@@ -1,0 +1,61 @@
+/* Responsive nav styling */
+.responsive-btn { display: none; }
+.responsive-nav { display: none }
+.responsive  { display: none }
+
+@media (max-width: 767px) {
+  .responsive-btn {
+    float: right;
+    display: inline-block;
+    vertical-align: middle;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+  }
+
+  .responsive {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .navbar-header {
+    width: 70%;
+    float: left;
+  }
+
+  .responsive-nav {
+    margin-top: 50px;
+    display: block;
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+
+  .responsive-nav li {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+    padding: 5px;
+    text-align: center;
+  }
+
+  .responsive-nav li:last-child {
+    border-bottom: none;
+  }
+
+  .responsive-nav li:first-child {
+    border-top: 1px solid rgba(128, 128, 128, 0.15);
+  }
+
+  .responsive-nav li:hover {
+    background: rgba(51, 122, 183, 0.09);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .responsive-nav li a:hover {
+    text-decoration: none;
+    color: #337ab7;
+  }
+}

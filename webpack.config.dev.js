@@ -7,7 +7,8 @@ module.exports = {
     './client/index.js'
   ],
   module: {
-    loaders: [{
+    loaders: [
+      {
       test: /\.jsx?$/,
       include: [
         path.join(__dirname, 'client'),
@@ -15,7 +16,12 @@ module.exports = {
       ],
       exclude: /node_modules/,
       loader: 'react-hot-loader!babel-loader'
-    }]
+    },
+    {
+      test: /\.css$/,
+      use: [ 'style-loader', 'css-loader' ]
+    }
+    ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

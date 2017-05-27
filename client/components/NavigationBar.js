@@ -11,6 +11,15 @@ class NavigationBar extends React.Component {
     this.props.logout();
   }
 
+  toggleResponsiveNav = () => {
+    const nav = document.getElementById("nav");
+    if (nav.className === "responsive") {
+        nav.className += " responsive-nav";
+    } else {
+        nav.className = "responsive";
+    }
+  }
+
   render() {
     const { isAuthenticated } = this.props.auth;
 
@@ -28,6 +37,20 @@ class NavigationBar extends React.Component {
       </ul>
     );
 
+    const responsiveUserLinks = (
+      <ul id="nav" className="responsive">
+        <li><Link to="/tweets">Tweets</Link></li>
+        <li><Link to="#" onClick={this.logout}>Logout</Link></li>
+      </ul>
+    )
+
+    const responsiveGuestLinks = (
+      <ul id="nav" className="responsive">
+        <li><Link to="/signup">Sign Up</Link></li>
+        <li><Link to="/login">Login</Link></li>
+      </ul>
+    )
+
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -36,6 +59,10 @@ class NavigationBar extends React.Component {
           </div>
           <div className="collapse navbar-collapse">
             { isAuthenticated ? userLinks : guestLinks }
+          </div>
+          <div className="responsive-btn" onClick={this.toggleResponsiveNav}>☰</div>
+          <div>
+            { isAuthenticated ? responsiveUserLinks : responsiveGuestLinks }
           </div>
         </div>
       </nav>

@@ -6,7 +6,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'twitter-clone',
-      user:     'dylan',
+      user:     'DylanShaw',
       password: ''
     },
     pool: {

@@ -8,3 +8,8 @@
 * Enter the command `knex migrate:latest` into the terminal to update your database with the tweets and users tables
 * Start dev server with `npm start`
 * Visit `http://localhost:8888/`
+
+# TODO
+* Add profile page, auto re-direct to profile when logged in?
+* Only query tweets of active users
+* Admin page to manage Twitter users
