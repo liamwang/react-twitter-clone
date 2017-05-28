@@ -1,3 +1,12 @@
+/* General Styling */
+.profile-image {
+  background: #eeeeee;
+  width: 100%;
+  height: 250px;
+  text-align: center;
+  padding-top: 100px;
+}
+
 /* Responsive nav styling */
 .responsive-btn { display: none; }
 .responsive-nav { display: none }
